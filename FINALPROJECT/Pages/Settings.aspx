@@ -1,0 +1,592 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Settings.aspx.cs" Inherits="FINALPROJECT.Settings" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Owl eWallet - Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        body { background: #060f18; min-height: 100vh; }
+
+        .navbar {
+            background: #0e2238;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .brand-name {
+            font-family: 'DM Mono', monospace;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #ffffff;
+            padding: 18px 0;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+        }
+
+        .nav-links a {
+            color: #7aaac8;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover  { color: #ffffff; border-bottom-color: #4a9fd4; }
+        .nav-links a.active { color: #ffffff; border-bottom-color: #2e7db5; }
+
+        .nav-divider {
+            width: 1px;
+            background: #1a3a5c;
+            margin: 12px 0;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* ── Lightened welcome name ── */
+        .navbar-right span {
+            color: #c8dff0;
+            font-size: 13px;
+        }
+
+        .navbar-right strong {
+            color: #e8f4ff;
+            font-weight: 600;
+        }
+
+        .btn-logout {
+            background: transparent;
+            color: #cc0000;
+            border: 1px solid #cc0000;
+            padding: 7px 16px;
+            border-radius: 6px;
+            font-size: 12.5px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-logout:hover { background: #cc0000; color: #ffffff; }
+
+        .page-header {
+            background: #0a1929;
+            border-bottom: 1px solid #1a3a5c;
+            padding: 24px 40px;
+        }
+
+        .page-header h1 {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            margin-bottom: 4px;
+        }
+
+        .page-header p { color: #7aaac8; font-size: 12.5px; }
+
+        .main-content {
+            max-width: 860px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: #0e2238;
+            border-radius: 14px;
+            padding: 28px;
+            border: 1px solid #1a3a5c;
+            grid-column: 1 / -1;
+        }
+
+        .card-title {
+            color: #7aaac8;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #1a3a5c;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(26,58,92,0.5);
+        }
+
+        .info-row:last-child { border-bottom: none; }
+
+        .info-label {
+            color: #7aaac8;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .info-value.mono {
+            font-family: 'DM Mono', monospace;
+            color: #4a9fd4;
+            font-size: 16px;
+        }
+
+        .info-value.green {
+            font-family: 'DM Mono', monospace;
+            color: #4adf8a;
+        }
+
+        .info-value.badge {
+            background: rgba(74,223,138,0.1);
+            border: 1px solid rgba(74,223,138,0.3);
+            color: #4adf8a;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .password-card {
+            background: #0e2238;
+            border-radius: 14px;
+            padding: 28px;
+            border: 1px solid #1a3a5c;
+            grid-column: 1 / -1;
+        }
+
+        .form-group { margin-bottom: 18px; }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: #7aaac8;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1.5px solid #1a3a5c;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'DM Sans', sans-serif;
+            color: #ffffff;
+            background: #091929;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: #4a9fd4;
+            box-shadow: 0 0 0 3px rgba(74,159,212,0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .btn-save {
+            padding: 12px 28px;
+            background: #2e7db5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            letter-spacing: 0.3px;
+            margin-top: 4px;
+        }
+
+        .btn-save:hover  { background: #256a9e; }
+        .btn-save:active { transform: scale(0.99); }
+
+        .msg-error {
+            display: block;
+            background: #1a0a0a;
+            border-left: 3px solid #cc0000;
+            border-radius: 6px;
+            padding: 11px 15px;
+            color: #ff6b6b;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .msg-error:empty { display: none; }
+
+        .msg-success {
+            display: block;
+            background: #0a1a0f;
+            border-left: 3px solid #27ae60;
+            border-radius: 6px;
+            padding: 11px 15px;
+            color: #4adf8a;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .msg-success:empty { display: none; }
+
+        /* ── Confirmation Modal ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+            animation: fadeIn 0.18s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        .modal-box {
+            background: #0e2238;
+            border: 1px solid #1a3a5c;
+            border-radius: 16px;
+            padding: 35px 40px;
+            width: 420px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            animation: slideUp 0.2s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(16px); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+
+        .modal-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,170,51,0.12);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: #ffaa33;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .modal-title {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .modal-desc {
+            color: #7aaac8;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-confirm {
+            flex: 1;
+            padding: 12px;
+            background: #2e7db5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-confirm:hover { background: #256a9e; }
+
+        .btn-cancel {
+            flex: 1;
+            padding: 12px;
+            background: transparent;
+            color: #7aaac8;
+            border: 1px solid #1a3a5c;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background: #1a3a5c;
+            color: #ffffff;
+        }
+
+        .footer-info {
+            text-align: center;
+            color: #2a4560;
+            font-size: 12px;
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-box">
+            <div class="modal-icon">PWD</div>
+            <div class="modal-title">Change Password?</div>
+            <div class="modal-desc">
+                Are you sure you want to update your password?
+                You will be logged out and redirected to the login page.
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+                <button type="button" class="btn-confirm" onclick="confirmSave()">Yes, Update</button>
+            </div>
+        </div>
+    </div>
+
+    <form id="form1" runat="server">
+
+        <div class="navbar">
+            <div class="navbar-left">
+                <div class="brand-name">Owl eWallet</div>
+                <div class="nav-divider"></div>
+                <nav class="nav-links">
+                    <a href="Dashboard.aspx">Dashboard</a>
+                    <a href="Deposit.aspx">Deposit</a>
+                    <a href="Withdraw.aspx">Withdraw</a>
+                    <a href="SendMoney.aspx">Send Money</a>
+                    <a href="StatementOfAccount.aspx">Statement</a>
+                    <a href="MyDepositsWithdrawals.aspx">Dep / With</a>
+                    <a href="MySentReceived.aspx">Sent / Received</a>
+                    <a href="Settings.aspx" class="active">Settings</a>
+                </nav>
+            </div>
+            <div class="navbar-right">
+                <span>Welcome, <strong>
+                    <asp:Label ID="lblNavName" runat="server" />
+                </strong></span>
+                <a href="Logout.aspx" class="btn-logout">Logout</a>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h1>Settings</h1>
+            <p>Manage your account information and security</p>
+        </div>
+
+        <div class="main-content">
+            <div class="settings-grid">
+
+                <div class="info-card">
+                    <div class="card-title">Account Information</div>
+                    <div class="info-row">
+                        <span class="info-label">Account Number</span>
+                        <span class="info-value mono">
+                            <asp:Label ID="lblAccountNumber" runat="server" />
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Full Name</span>
+                        <span class="info-value">
+                            <asp:Label ID="lblFullName" runat="server" />
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Email Address</span>
+                        <span class="info-value">
+                            <asp:Label ID="lblEmail" runat="server" />
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Date Registered</span>
+                        <span class="info-value">
+                            <asp:Label ID="lblDateRegistered" runat="server" />
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Current Balance</span>
+                        <span class="info-value green">
+                            <asp:Label ID="lblCurrentBalance" runat="server" />
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Total Sent</span>
+                        <span class="info-value green">
+                            <asp:Label ID="lblTotalSent" runat="server" />
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Account Status</span>
+                        <span class="info-value badge">Active</span>
+                    </div>
+                </div>
+
+                <div class="password-card">
+                    <div class="card-title">Change Password</div>
+
+                    <asp:Label ID="lblError"   runat="server" CssClass="msg-error" />
+                    <asp:Label ID="lblSuccess" runat="server" CssClass="msg-success" />
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <asp:TextBox ID="txtCurrentPassword" runat="server"
+                                TextMode="Password" placeholder="Current password" />
+                            <asp:RequiredFieldValidator ID="rfvCurrent" runat="server"
+                                ControlToValidate="txtCurrentPassword"
+                                ErrorMessage="Required."
+                                CssClass="msg-error" Display="Dynamic" />
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <asp:TextBox ID="txtNewPassword" runat="server"
+                                TextMode="Password" placeholder="New password" />
+                            <asp:RequiredFieldValidator ID="rfvNew" runat="server"
+                                ControlToValidate="txtNewPassword"
+                                ErrorMessage="Required."
+                                CssClass="msg-error" Display="Dynamic" />
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm New Password</label>
+                            <asp:TextBox ID="txtConfirmPassword" runat="server"
+                                TextMode="Password" placeholder="Confirm password" />
+                            <asp:RequiredFieldValidator ID="rfvConfirm" runat="server"
+                                ControlToValidate="txtConfirmPassword"
+                                ErrorMessage="Required."
+                                CssClass="msg-error" Display="Dynamic" />
+                            <asp:CompareValidator ID="cvPassword" runat="server"
+                                ControlToValidate="txtConfirmPassword"
+                                ControlToCompare="txtNewPassword"
+                                ErrorMessage="Passwords do not match."
+                                CssClass="msg-error" Display="Dynamic" />
+                        </div>
+                    </div>
+
+                    <!-- Hidden real submit button triggered by modal -->
+                    <asp:Button ID="btnSave" runat="server"
+                        Text="Update Password"
+                        OnClick="btnSave_Click"
+                        CssClass="btn-save"
+                        style="display:none;" />
+
+                    <!-- Visible button that shows the modal first -->
+                    <button type="button" class="btn-save" onclick="showModal()">
+                        Update Password
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="footer-info">
+                Owl eWallet &copy; 2026 &mdash; All transactions are secured and encrypted.
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function showModal() {
+            // Run client-side validation first
+            if (typeof Page_ClientValidate === 'function') {
+                if (!Page_ClientValidate()) return;
+            }
+            document.getElementById('confirmModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('confirmModal').classList.remove('open');
+        }
+
+        function confirmSave() {
+            closeModal();
+            // Trigger the hidden ASP.NET button
+            document.getElementById('<%= btnSave.ClientID %>').click();
+        }
+
+        // Close modal on overlay click
+        document.getElementById('confirmModal').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+
+</body>
+</html>
