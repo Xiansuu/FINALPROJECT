@@ -375,7 +375,7 @@
                         Display="Dynamic" />
                     <asp:RegularExpressionValidator ID="revEmail" runat="server"
                         ControlToValidate="txtEmail"
-                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                        ValidationExpression="^[a-zA-ZÀ-ÖØ-öø-ÿÑñ0-9._%+\-]+@[a-zA-ZÀ-ÖØ-öø-ÿÑñ0-9.\-]+\.[a-zA-Z]{2,}$"
                         ErrorMessage="Invalid email format."
                         CssClass="error-msg"
                         Display="Dynamic" />
