@@ -234,12 +234,23 @@
             margin-top: 7px;
         }
 
-        /* ── Quick Amount Buttons ── */
-        .quick-amounts {
-            display: flex;
+        /* ── Quick Amount ── */
+        .quick-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #7aaac8;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 12px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 8px;
-            margin-top: 10px;
-            flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
         .quick-amt {
@@ -249,11 +260,12 @@
             font-family: 'DM Mono', monospace;
             font-size: 12px;
             font-weight: 500;
-            padding: 7px 16px;
-            border-radius: 6px;
+            padding: 10px 8px;
+            border-radius: 8px;
             cursor: pointer;
             transition: background 0.2s, border-color 0.2s, color 0.2s;
             letter-spacing: 0.3px;
+            text-align: center;
         }
 
         .quick-amt:hover {
@@ -531,11 +543,20 @@
                             CssClass="val-error" Display="Dynamic" Enabled="false" />
                         <p class="form-hint">Min: ₱100 &nbsp;|&nbsp; Max: ₱2,000 &nbsp;|&nbsp; Multiples of ₱100 only</p>
 
-                        <!-- Quick Amount Buttons -->
-                        <div class="quick-amounts">
+                        <!-- Quick Amount Grid -->
+                        <span class="quick-label">Quick Select Amount</span>
+                        <div class="quick-grid">
                             <button type="button" class="quick-amt" onclick="setAmount(100, this)">₱100</button>
+                            <button type="button" class="quick-amt" onclick="setAmount(200, this)">₱200</button>
+                            <button type="button" class="quick-amt" onclick="setAmount(300, this)">₱300</button>
+                            <button type="button" class="quick-amt" onclick="setAmount(400, this)">₱400</button>
                             <button type="button" class="quick-amt" onclick="setAmount(500, this)">₱500</button>
+                            <button type="button" class="quick-amt" onclick="setAmount(600, this)">₱600</button>
+                            <button type="button" class="quick-amt" onclick="setAmount(700, this)">₱700</button>
+                            <button type="button" class="quick-amt" onclick="setAmount(800, this)">₱800</button>
+                            <button type="button" class="quick-amt" onclick="setAmount(900, this)">₱900</button>
                             <button type="button" class="quick-amt" onclick="setAmount(1000, this)">₱1,000</button>
+                            <button type="button" class="quick-amt" onclick="setAmount(1500, this)">₱1,500</button>
                             <button type="button" class="quick-amt" onclick="setAmount(2000, this)">₱2,000</button>
                         </div>
                     </div>
@@ -604,7 +625,6 @@
     <script>
         var amtInputId = '<%= txtAmount.ClientID %>';
 
-        // Numbers only on amount field
         document.addEventListener('DOMContentLoaded', function () {
             var input = document.getElementById(amtInputId);
             if (input) {
@@ -617,7 +637,6 @@
             }
         });
 
-        // Set amount from quick buttons
         function setAmount(val, btn) {
             var input = document.getElementById(amtInputId);
             if (!input || input.disabled) return;

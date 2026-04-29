@@ -15,7 +15,6 @@
 
         body { background: #060f18; min-height: 100vh; }
 
-        /* ── Navbar ── */
         .navbar {
             background: #0e2238;
             padding: 0 40px;
@@ -77,7 +76,11 @@
         }
 
         .navbar-right span { color: #a8c4e0; font-size: 13px; }
-        .navbar-right strong { color: #ffffff; font-weight: 600; }
+
+        .navbar-right strong {
+            color: #e8f4ff;
+            font-weight: 600;
+        }
 
         .btn-logout {
             background: transparent;
@@ -95,7 +98,6 @@
 
         .btn-logout:hover { background: #cc0000; color: #ffffff; }
 
-        /* ── Page Header ── */
         .page-header {
             background: #0a1929;
             border-bottom: 1px solid #1a3a5c;
@@ -112,7 +114,6 @@
 
         .page-header p { color: #7aaac8; font-size: 12.5px; }
 
-        /* ── Main ── */
         .main-content {
             max-width: 860px;
             margin: 30px auto;
@@ -230,6 +231,51 @@
 
         .server-success:empty { display: none; }
 
+        /* ── Quick Amount Buttons ── */
+        .quick-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #7aaac8;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .quick-amt {
+            background: #091929;
+            border: 1px solid #1a3a5c;
+            color: #7aaac8;
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 10px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            letter-spacing: 0.3px;
+            text-align: center;
+        }
+
+        .quick-amt:hover {
+            background: #1a3a5c;
+            border-color: #4a9fd4;
+            color: #ffffff;
+        }
+
+        .quick-amt.selected {
+            background: rgba(192,57,43,0.2);
+            border-color: #c0392b;
+            color: #ff6b6b;
+        }
+
         .btn-withdraw {
             width: 100%;
             padding: 13px;
@@ -310,7 +356,6 @@
 <body>
     <form id="form1" runat="server">
 
-        <!-- Navbar -->
         <div class="navbar">
             <div class="navbar-left">
                 <a href="Dashboard.aspx" class="brand-name">Owl eWallet</a>
@@ -332,7 +377,6 @@
             </div>
         </div>
 
-        <!-- Page Header -->
         <div class="page-header">
             <h1>Withdraw Funds</h1>
             <p>Withdraw money from your Owl eWallet account</p>
@@ -361,15 +405,30 @@
                         <asp:RequiredFieldValidator ID="rfvAmount" runat="server"
                             ControlToValidate="txtAmount"
                             ErrorMessage="Amount is required."
-                            CssClass="error-msg"
-                            Display="Dynamic" />
+                            CssClass="error-msg" Display="Dynamic" />
                         <asp:RangeValidator ID="rvAmount" runat="server"
                             ControlToValidate="txtAmount"
                             MinimumValue="100" MaximumValue="2000"
                             Type="Currency"
                             ErrorMessage="Amount must be between ₱100.00 and ₱2,000.00."
-                            CssClass="error-msg"
-                            Display="Dynamic" />
+                            CssClass="error-msg" Display="Dynamic" />
+                    </div>
+
+                    <!-- Quick Amount Buttons -->
+                    <span class="quick-label">Quick Select Amount</span>
+                    <div class="quick-grid">
+                        <button type="button" class="quick-amt" onclick="setAmount(100, this)">₱100</button>
+                        <button type="button" class="quick-amt" onclick="setAmount(200, this)">₱200</button>
+                        <button type="button" class="quick-amt" onclick="setAmount(300, this)">₱300</button>
+                        <button type="button" class="quick-amt" onclick="setAmount(400, this)">₱400</button>
+                        <button type="button" class="quick-amt" onclick="setAmount(500, this)">₱500</button>
+                        <button type="button" class="quick-amt" onclick="setAmount(600, this)">₱600</button>
+                        <button type="button" class="quick-amt" onclick="setAmount(700, this)">₱700</button>
+                        <button type="button" class="quick-amt" onclick="setAmount(800, this)">₱800</button>
+                        <button type="button" class="quick-amt" onclick="setAmount(900, this)">₱900</button>
+                        <button type="button" class="quick-amt" onclick="setAmount(1000, this)">₱1,000</button>
+                        <button type="button" class="quick-amt" onclick="setAmount(1500, this)">₱1,500</button>
+                        <button type="button" class="quick-amt" onclick="setAmount(2000, this)">₱2,000</button>
                     </div>
 
                     <asp:Button ID="btnWithdraw" runat="server"
@@ -413,6 +472,40 @@
 
         </div>
     </form>
+
+    <script>
+        var amtInputId = '<%= txtAmount.ClientID %>';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var input = document.getElementById(amtInputId);
+            if (input) {
+                // Numbers only
+                input.addEventListener('keypress', function (e) {
+                    if (!/[0-9]/.test(e.key)) e.preventDefault();
+                });
+                // Block paste
+                input.addEventListener('paste', function (e) {
+                    e.preventDefault();
+                });
+                // Clear quick selection if user types manually
+                input.addEventListener('input', function () {
+                    document.querySelectorAll('.quick-amt').forEach(function (b) {
+                        b.classList.remove('selected');
+                    });
+                });
+            }
+        });
+
+        function setAmount(val, btn) {
+            var input = document.getElementById(amtInputId);
+            if (!input) return;
+            input.value = val;
+            document.querySelectorAll('.quick-amt').forEach(function (b) {
+                b.classList.remove('selected');
+            });
+            btn.classList.add('selected');
+        }
+    </script>
 
 </body>
 </html>
