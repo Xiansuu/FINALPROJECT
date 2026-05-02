@@ -137,12 +137,26 @@ body {
 
 /* ── Filter Card ── */
 .filter-card {
-    background: #0e2238;
-    border-radius: 14px;
-    padding: 24px 28px;
-    border: 1px solid #1a3a5c;
-    margin-bottom: 20px;
+    background: linear-gradient(135deg, #0e2238 60%, #122e4e 100%);
+    border-radius: 18px;
+    padding: 28px 32px;
+    border: 1px solid #1e4060;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
 }
+
+    .filter-card::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(circle, rgba(46,125,181,0.1) 0%, transparent 70%);
+        pointer-events: none;
+    }
 
 .filter-card-title {
     color: #7aaac8;
@@ -150,7 +164,9 @@ body {
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-weight: 600;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .filter-row {
@@ -158,12 +174,14 @@ body {
     gap: 16px;
     align-items: flex-end;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
 }
 
 .filter-group {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 8px;
     flex: 1;
     min-width: 140px;
 }
@@ -178,9 +196,9 @@ body {
 
     .filter-group input,
     .filter-group select {
-        padding: 11px 14px;
+        padding: 13px 16px;
         border: 1.5px solid #1a3a5c;
-        border-radius: 8px;
+        border-radius: 10px;
         font-size: 13.5px;
         font-family: 'DM Sans', sans-serif;
         color: #ffffff;
@@ -200,22 +218,23 @@ body {
         }
 
 .btn-generate {
-    padding: 11px 28px;
-    background: #2e7db5;
+    padding: 13px 32px;
+    background: linear-gradient(135deg, #2e7db5, #256a9e);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 13.5px;
     font-weight: 600;
     font-family: 'DM Sans', sans-serif;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
+    transition: opacity 0.2s, transform 0.1s;
     letter-spacing: 0.3px;
     white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(46,125,181,0.3);
 }
 
     .btn-generate:hover {
-        background: #256a9e;
+        opacity: 0.9;
     }
 
     .btn-generate:active {
@@ -230,17 +249,16 @@ body {
     display: block;
 }
 
-/* ── Error Message ── */
 .msg-error {
     display: block;
     background: #1a0a0a;
     border-left: 3px solid #cc0000;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 11px 15px;
     color: #ff6b6b;
     font-size: 13px;
     font-weight: 500;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
     .msg-error:empty {
@@ -250,14 +268,16 @@ body {
 /* ── Results Card ── */
 .results-card {
     background: #0e2238;
-    border-radius: 14px;
+    border-radius: 18px;
     border: 1px solid #1a3a5c;
     overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
 .results-header {
-    padding: 18px 24px;
+    padding: 20px 28px;
     border-bottom: 1px solid #1a3a5c;
+    background: #091929;
 }
 
     .results-header span {
@@ -281,11 +301,11 @@ table.stmt-table {
 
 .stmt-table thead tr {
     background: #091929;
-    border-bottom: 1px solid #1a3a5c;
+    border-bottom: 2px solid #1a3a5c;
 }
 
 .stmt-table th {
-    padding: 12px 16px;
+    padding: 14px 18px;
     text-align: left;
     color: #7aaac8;
     font-size: 10px;
@@ -296,7 +316,7 @@ table.stmt-table {
 }
 
 .stmt-table td {
-    padding: 13px 16px;
+    padding: 14px 18px;
     border-bottom: 1px solid rgba(26,58,92,0.4);
     color: #c8d8e8;
     vertical-align: middle;
@@ -306,14 +326,14 @@ table.stmt-table {
     border-bottom: none;
 }
 
-.stmt-table tr:hover td {
+.stmt-table tbody tr:hover td {
     background: rgba(74,159,212,0.04);
 }
 
-/* Badges */
+/* ── Badges ── */
 .badge {
     display: inline-block;
-    padding: 3px 10px;
+    padding: 4px 12px;
     border-radius: 20px;
     font-size: 10px;
     font-weight: 600;
@@ -325,21 +345,25 @@ table.stmt-table {
 .badge-D {
     background: rgba(74,223,138,0.12);
     color: #4adf8a;
+    border: 1px solid rgba(74,223,138,0.2);
 }
 
 .badge-W {
-    background: rgba(204,0,0,0.12);
+    background: rgba(255,107,107,0.12);
     color: #ff6b6b;
+    border: 1px solid rgba(255,107,107,0.2);
 }
 
 .amount-deposit {
     color: #4adf8a;
     font-family: 'DM Mono', monospace;
+    font-weight: 500;
 }
 
 .amount-withdrawal {
     color: #ff6b6b;
     font-family: 'DM Mono', monospace;
+    font-weight: 500;
 }
 
 .seq-col {
@@ -348,10 +372,10 @@ table.stmt-table {
     font-size: 12px;
 }
 
-.empty-state {
+.empty-state td {
     text-align: center;
     color: #3a5570;
-    padding: 40px;
+    padding: 50px;
     font-size: 13px;
 }
 
@@ -363,4 +387,3 @@ table.stmt-table {
     margin-top: 30px;
     padding-bottom: 20px;
 }
-
