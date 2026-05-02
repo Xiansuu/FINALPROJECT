@@ -24,12 +24,13 @@
 
         .register-wrapper {
             display: flex;
-            width: 850px;
+            width: 900px;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0,0,0,0.7);
         }
 
+        /* ── Left Panel ── */
         .left-panel {
             background: #0e2238;
             width: 35%;
@@ -39,6 +40,26 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            top: -80px; left: -80px;
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, rgba(46,125,181,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .left-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; right: -80px;
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, rgba(46,125,181,0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .brand-name {
@@ -48,6 +69,8 @@
             letter-spacing: 2px;
             color: #ffffff;
             margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
         }
 
         .left-panel p {
@@ -55,20 +78,66 @@
             font-size: 13px;
             line-height: 1.6;
             font-weight: 400;
+            position: relative;
+            z-index: 1;
         }
 
         .divider {
             width: 40px;
             height: 3px;
-            background: #2e7db5;
+            background: linear-gradient(90deg, #2e7db5, #4a9fd4);
             margin: 15px auto;
             border-radius: 2px;
+            position: relative;
+            z-index: 1;
         }
 
+        .left-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 30px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .left-badge {
+            background: rgba(74,159,212,0.08);
+            border: 1px solid rgba(74,159,212,0.15);
+            border-radius: 8px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .left-badge-icon {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            color: #4a9fd4;
+            background: rgba(74,159,212,0.12);
+            border: 1px solid rgba(74,159,212,0.2);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+
+        .left-badge-text {
+            color: #7aaac8;
+            font-size: 11.5px;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* ── Right Panel ── */
         .right-panel {
             background: #f0f4f8;
             width: 65%;
-            padding: 45px 45px;
+            padding: 40px 45px;
         }
 
         .right-panel h2 {
@@ -82,13 +151,11 @@
         .subtitle {
             color: #666;
             font-size: 13px;
-            margin-bottom: 25px;
+            margin-bottom: 22px;
             font-weight: 400;
         }
 
-        .form-group {
-            margin-bottom: 16px;
-        }
+        .form-group { margin-bottom: 14px; }
 
         .form-group label {
             display: block;
@@ -114,9 +181,33 @@
         }
 
         .form-group input:focus {
-            border-color: #0e2238;
-            box-shadow: 0 0 0 3px rgba(14,34,56,0.12);
+            border-color: #2e7db5;
+            box-shadow: 0 0 0 3px rgba(46,125,181,0.12);
         }
+
+        /* ── Password Wrapper ── */
+        .password-wrapper { position: relative; }
+        .password-wrapper input { padding-right: 52px; }
+
+        .toggle-password {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #c0ccd8;
+            font-size: 10px;
+            font-family: 'DM Mono', monospace;
+            font-weight: 500;
+            padding: 0;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+            user-select: none;
+        }
+
+        .toggle-password:hover { color: #7aaac8; }
 
         .error-msg {
             color: #cc0000;
@@ -134,7 +225,7 @@
             color: #cc0000;
             font-size: 13px;
             font-weight: 500;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             display: block;
         }
 
@@ -143,7 +234,7 @@
         .btn-register {
             width: 100%;
             padding: 13px;
-            background: #0e2238;
+            background: linear-gradient(135deg, #0e2238, #1a3a5c);
             color: white;
             border: none;
             border-radius: 8px;
@@ -152,16 +243,17 @@
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
             margin-top: 10px;
-            transition: background 0.2s, transform 0.1s;
+            transition: opacity 0.2s, transform 0.1s;
             letter-spacing: 0.3px;
+            box-shadow: 0 4px 14px rgba(14,34,56,0.3);
         }
 
-        .btn-register:hover  { background: #091929; }
+        .btn-register:hover  { opacity: 0.9; }
         .btn-register:active { transform: scale(0.99); }
 
         .login-link {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 18px;
             font-size: 13px;
             color: #666;
         }
@@ -174,9 +266,7 @@
             transition: border-color 0.15s;
         }
 
-        .login-link a:hover {
-            border-bottom-color: #0e2238;
-        }
+        .login-link a:hover { border-bottom-color: #0e2238; }
 
         /* ── Modal ── */
         .modal-overlay {
@@ -278,7 +368,7 @@
         .btn-proceed {
             width: 100%;
             padding: 13px;
-            background: #0e2238;
+            background: linear-gradient(135deg, #0e2238, #1a3a5c);
             color: white;
             border: none;
             border-radius: 8px;
@@ -287,11 +377,12 @@
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
             margin-top: 20px;
-            transition: background 0.2s, transform 0.1s;
+            transition: opacity 0.2s, transform 0.1s;
             letter-spacing: 0.3px;
+            box-shadow: 0 4px 14px rgba(14,34,56,0.3);
         }
 
-        .btn-proceed:hover  { background: #091929; }
+        .btn-proceed:hover  { opacity: 0.9; }
         .btn-proceed:active { transform: scale(0.99); }
     </style>
 </head>
@@ -324,6 +415,21 @@
                 <div class="brand-name">Owl eWallet</div>
                 <div class="divider"></div>
                 <p>Create your account and start sending money securely today.</p>
+
+                <div class="left-badges">
+                    <div class="left-badge">
+                        <span class="left-badge-icon">FREE</span>
+                        <span class="left-badge-text">No registration fees</span>
+                    </div>
+                    <div class="left-badge">
+                        <span class="left-badge-icon">SEC</span>
+                        <span class="left-badge-text">Your data is fully encrypted</span>
+                    </div>
+                    <div class="left-badge">
+                        <span class="left-badge-icon">FAST</span>
+                        <span class="left-badge-text">Start transacting instantly</span>
+                    </div>
+                </div>
             </div>
 
             <div class="right-panel">
@@ -383,7 +489,10 @@
 
                 <div class="form-group">
                     <label>Password</label>
-                    <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" />
+                    <div class="password-wrapper">
+                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" />
+                        <button type="button" class="toggle-password" onclick="togglePassword('pwd', this)">SHOW</button>
+                    </div>
                     <asp:RequiredFieldValidator ID="rfvPassword" runat="server"
                         ControlToValidate="txtPassword"
                         ErrorMessage="Password is required."
@@ -393,7 +502,10 @@
 
                 <div class="form-group">
                     <label>Confirm Password</label>
-                    <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" />
+                    <div class="password-wrapper">
+                        <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" />
+                        <button type="button" class="toggle-password" onclick="togglePassword('confirm', this)">SHOW</button>
+                    </div>
                     <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server"
                         ControlToValidate="txtConfirmPassword"
                         ErrorMessage="Please confirm your password."
@@ -431,6 +543,20 @@
 
         function goToLogin() {
             window.location.href = 'Login.aspx';
+        }
+
+        function togglePassword(field, btn) {
+            var inputId = field === 'pwd'
+                ? '<%= txtPassword.ClientID %>'
+                : '<%= txtConfirmPassword.ClientID %>';
+            var input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.innerText = 'HIDE';
+            } else {
+                input.type = 'password';
+                btn.innerText = 'SHOW';
+            }
         }
     </script>
 

@@ -167,6 +167,7 @@ namespace FINALPROJECT
                         pnlNotifEmpty.Visible = true;
                         rptNotifications.Visible = false;
                         NotifHasItems = false;
+                        lblNotifCountLabel.Text = "";
                     }
                     else
                     {
@@ -175,6 +176,7 @@ namespace FINALPROJECT
                         NotifHasItems = true;
                         rptNotifications.DataSource = notifications;
                         rptNotifications.DataBind();
+                        lblNotifCountLabel.Text = notifications.Count.ToString();
                     }
                 }
             }

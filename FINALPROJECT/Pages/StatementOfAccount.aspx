@@ -44,10 +44,7 @@
             white-space: nowrap;
         }
 
-        .nav-links {
-            display: flex;
-            align-items: stretch;
-        }
+        .nav-links { display: flex; align-items: stretch; }
 
         .nav-links a {
             color: #7aaac8;
@@ -62,15 +59,8 @@
             white-space: nowrap;
         }
 
-        .nav-links a:hover {
-            color: #ffffff;
-            border-bottom-color: #4a9fd4;
-        }
-
-        .nav-links a.active {
-            color: #ffffff;
-            border-bottom-color: #2e7db5;
-        }
+        .nav-links a:hover  { color: #ffffff; border-bottom-color: #4a9fd4; }
+        .nav-links a.active { color: #ffffff; border-bottom-color: #2e7db5; }
 
         .nav-divider {
             width: 1px;
@@ -118,10 +108,7 @@
             margin-bottom: 4px;
         }
 
-        .page-header p {
-            color: #7aaac8;
-            font-size: 12.5px;
-        }
+        .page-header p { color: #7aaac8; font-size: 12.5px; }
 
         /* ── Main ── */
         .main-content {
@@ -132,11 +119,23 @@
 
         /* ── Filter Card ── */
         .filter-card {
-            background: #0e2238;
-            border-radius: 14px;
-            padding: 24px 28px;
-            border: 1px solid #1a3a5c;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, #0e2238 60%, #122e4e 100%);
+            border-radius: 18px;
+            padding: 28px 32px;
+            border: 1px solid #1e4060;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-card::before {
+            content: '';
+            position: absolute;
+            top: -50px; right: -50px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(46,125,181,0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .filter-card-title {
@@ -145,7 +144,9 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 600;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .filter-row {
@@ -153,12 +154,14 @@
             gap: 16px;
             align-items: flex-end;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .filter-group {
             display: flex;
             flex-direction: column;
-            gap: 7px;
+            gap: 8px;
             flex: 1;
             min-width: 160px;
         }
@@ -172,9 +175,9 @@
         }
 
         .filter-group input {
-            padding: 11px 14px;
+            padding: 13px 16px;
             border: 1.5px solid #1a3a5c;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 13.5px;
             font-family: 'DM Sans', sans-serif;
             color: #ffffff;
@@ -189,21 +192,22 @@
         }
 
         .btn-generate {
-            padding: 11px 28px;
-            background: #2e7db5;
+            padding: 13px 32px;
+            background: linear-gradient(135deg, #2e7db5, #256a9e);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 13.5px;
             font-weight: 600;
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
+            transition: opacity 0.2s, transform 0.1s;
             letter-spacing: 0.3px;
             white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(46,125,181,0.3);
         }
 
-        .btn-generate:hover  { background: #256a9e; }
+        .btn-generate:hover  { opacity: 0.9; }
         .btn-generate:active { transform: scale(0.99); }
 
         .val-error {
@@ -214,17 +218,16 @@
             display: block;
         }
 
-        /* ── Error Message ── */
         .msg-error {
             display: block;
             background: #1a0a0a;
             border-left: 3px solid #cc0000;
-            border-radius: 6px;
+            border-radius: 8px;
             padding: 11px 15px;
             color: #ff6b6b;
             font-size: 13px;
             font-weight: 500;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .msg-error:empty { display: none; }
@@ -232,17 +235,19 @@
         /* ── Results Card ── */
         .results-card {
             background: #0e2238;
-            border-radius: 14px;
+            border-radius: 18px;
             border: 1px solid #1a3a5c;
             overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
         .results-header {
-            padding: 18px 24px;
+            padding: 20px 28px;
             border-bottom: 1px solid #1a3a5c;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: #091929;
         }
 
         .results-header span {
@@ -264,11 +269,11 @@
 
         .stmt-table thead tr {
             background: #091929;
-            border-bottom: 1px solid #1a3a5c;
+            border-bottom: 2px solid #1a3a5c;
         }
 
         .stmt-table th {
-            padding: 12px 16px;
+            padding: 14px 18px;
             text-align: left;
             color: #7aaac8;
             font-size: 10px;
@@ -279,22 +284,19 @@
         }
 
         .stmt-table td {
-            padding: 13px 16px;
+            padding: 14px 18px;
             border-bottom: 1px solid rgba(26,58,92,0.4);
             color: #c8d8e8;
             vertical-align: middle;
         }
 
         .stmt-table tr:last-child td { border-bottom: none; }
+        .stmt-table tbody tr:hover td { background: rgba(74,159,212,0.04); }
 
-        .stmt-table tr:hover td {
-            background: rgba(74,159,212,0.04);
-        }
-
-        /* Type badges */
+        /* ── Badges ── */
         .badge {
             display: inline-block;
-            padding: 3px 10px;
+            padding: 4px 12px;
             border-radius: 20px;
             font-size: 10px;
             font-weight: 600;
@@ -303,22 +305,21 @@
             font-family: 'DM Mono', monospace;
         }
 
-        .badge-D { background: rgba(74,223,138,0.12); color: #4adf8a; }
-        .badge-W { background: rgba(204,0,0,0.12);    color: #ff6b6b; }
-        .badge-S { background: rgba(255,165,0,0.12);  color: #ffaa33; }
-        .badge-R { background: rgba(74,159,212,0.12); color: #4a9fd4; }
+        .badge-D { background: rgba(74,223,138,0.12);  color: #4adf8a;  border: 1px solid rgba(74,223,138,0.2); }
+        .badge-W { background: rgba(255,107,107,0.12); color: #ff6b6b;  border: 1px solid rgba(255,107,107,0.2); }
+        .badge-S { background: rgba(255,170,51,0.12);  color: #ffaa33;  border: 1px solid rgba(255,170,51,0.2); }
+        .badge-R { background: rgba(74,159,212,0.12);  color: #4a9fd4;  border: 1px solid rgba(74,159,212,0.2); }
 
-        /* Debit / Credit */
-        .debit  { color: #ff6b6b; font-family: 'DM Mono', monospace; }
-        .credit { color: #4adf8a; font-family: 'DM Mono', monospace; }
-        .balance-col { color: #ffffff; font-family: 'DM Mono', monospace; font-weight: 500; }
-        .seq-col { color: #3a5570; font-family: 'DM Mono', monospace; font-size: 12px; }
-        .acct-col { color: #4a9fd4; font-family: 'DM Mono', monospace; font-size: 12px; }
+        .debit       { color: #ff6b6b; font-family: 'DM Mono', monospace; font-weight: 500; }
+        .credit      { color: #4adf8a; font-family: 'DM Mono', monospace; font-weight: 500; }
+        .balance-col { color: #ffffff; font-family: 'DM Mono', monospace; font-weight: 600; }
+        .seq-col     { color: #3a5570; font-family: 'DM Mono', monospace; font-size: 12px; }
+        .acct-col    { color: #4a9fd4; font-family: 'DM Mono', monospace; font-size: 12px; }
 
         .empty-row td {
             text-align: center;
             color: #3a5570;
-            padding: 40px;
+            padding: 50px;
             font-size: 13px;
         }
 
@@ -335,7 +336,6 @@
 <body>
     <form id="form1" runat="server">
 
-        <!-- Navbar -->
         <div class="navbar">
             <div class="navbar-left">
                 <div class="brand-name">Owl eWallet</div>
@@ -357,7 +357,6 @@
             </div>
         </div>
 
-        <!-- Page Header -->
         <div class="page-header">
             <h1>Statement of Account</h1>
             <p>View your full transaction history within a date range</p>
@@ -367,7 +366,6 @@
 
             <asp:Label ID="lblError" runat="server" CssClass="msg-error" />
 
-            <!-- Filter Card -->
             <div class="filter-card">
                 <div class="filter-card-title">Filter by Date Range</div>
                 <div class="filter-row">
@@ -394,7 +392,6 @@
                 </div>
             </div>
 
-            <!-- Results -->
             <asp:Panel ID="pnlResults" runat="server" Visible="false">
                 <div class="results-card">
                     <div class="results-header">
@@ -415,9 +412,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Type">
                                     <ItemTemplate>
-                                        <%#
-                                            GetTypeBadge(Eval("Type").ToString())
-                                        %>
+                                        <%# GetTypeBadge(Eval("Type").ToString()) %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="Date" HeaderText="Date &amp; Time"

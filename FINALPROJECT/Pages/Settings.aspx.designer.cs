@@ -42,6 +42,15 @@ namespace FINALPROJECT
         protected global::System.Web.UI.WebControls.Label lblAccountNumber;
 
         /// <summary>
+        /// lblCurrentBalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCurrentBalance;
+
+        /// <summary>
         /// lblFullName control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace FINALPROJECT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFullName;
+
+        /// <summary>
+        /// lblTotalSent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalSent;
 
         /// <summary>
         /// lblEmail control.
@@ -67,24 +85,6 @@ namespace FINALPROJECT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDateRegistered;
-
-        /// <summary>
-        /// lblCurrentBalance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCurrentBalance;
-
-        /// <summary>
-        /// lblTotalSent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalSent;
 
         /// <summary>
         /// lblError control.

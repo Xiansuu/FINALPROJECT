@@ -76,11 +76,7 @@
         }
 
         .navbar-right span { color: #a8c4e0; font-size: 13px; }
-
-        .navbar-right strong {
-            color: #e8f4ff;
-            font-weight: 600;
-        }
+        .navbar-right strong { color: #e8f4ff; font-weight: 600; }
 
         .btn-logout {
             background: transparent;
@@ -115,17 +111,30 @@
         .page-header p { color: #7aaac8; font-size: 12.5px; font-weight: 400; }
 
         .main-content {
-            max-width: 860px;
+            max-width: 1100px;
             margin: 30px auto;
             padding: 0 20px;
         }
 
+        /* ── Balance Card ── */
         .balance-card {
-            background: #0e2238;
-            border-radius: 14px;
-            padding: 24px 28px;
-            margin-bottom: 20px;
-            border: 1px solid #1a3a5c;
+            background: linear-gradient(135deg, #0e2238 60%, #122e4e 100%);
+            border-radius: 18px;
+            padding: 34px 38px;
+            margin-bottom: 22px;
+            border: 1px solid #1e4060;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(74,159,212,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-card::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(74,223,138,0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .balance-card h4 {
@@ -133,15 +142,16 @@
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 600;
         }
 
         .balance-amount {
             font-family: 'DM Mono', monospace;
             color: #4adf8a;
-            font-size: 30px;
+            font-size: 36px;
             font-weight: 500;
+            text-shadow: 0 0 30px rgba(74,223,138,0.25);
         }
 
         .body-row {
@@ -150,15 +160,17 @@
             align-items: flex-start;
         }
 
+        /* ── Form Card ── */
         .form-card {
             background: #0e2238;
-            border-radius: 14px;
-            padding: 28px;
+            border-radius: 18px;
+            padding: 32px;
             border: 1px solid #1a3a5c;
             flex: 1;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
-        .form-group { margin-bottom: 20px; }
+        .form-group { margin-bottom: 22px; }
 
         .form-group label {
             display: block;
@@ -167,15 +179,15 @@
             color: #7aaac8;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 18px;
             border: 1.5px solid #1a3a5c;
-            border-radius: 8px;
-            font-size: 15px;
+            border-radius: 10px;
+            font-size: 16px;
             font-family: 'DM Mono', monospace;
             color: #ffffff;
             background: #091929;
@@ -191,7 +203,7 @@
         .hint-text {
             color: #3a5570;
             font-size: 11.5px;
-            margin-top: 7px;
+            margin-top: 8px;
             display: block;
         }
 
@@ -207,12 +219,12 @@
             display: block;
             background: #1a0a0a;
             border-left: 3px solid #cc0000;
-            border-radius: 6px;
-            padding: 11px 15px;
+            border-radius: 8px;
+            padding: 12px 16px;
             color: #ff6b6b;
             font-size: 13px;
             font-weight: 500;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .server-error:empty { display: none; }
@@ -221,32 +233,32 @@
             display: block;
             background: #0a1a0f;
             border-left: 3px solid #27ae60;
-            border-radius: 6px;
-            padding: 11px 15px;
+            border-radius: 8px;
+            padding: 12px 16px;
             color: #4adf8a;
             font-size: 13px;
             font-weight: 500;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .server-success:empty { display: none; }
 
-        /* ── Quick Amount Buttons ── */
+        /* ── Quick Amount ── */
         .quick-label {
             font-size: 11px;
             font-weight: 600;
             color: #7aaac8;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: block;
         }
 
         .quick-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 24px;
         }
 
         .quick-amt {
@@ -254,10 +266,10 @@
             border: 1px solid #1a3a5c;
             color: #7aaac8;
             font-family: 'DM Mono', monospace;
-            font-size: 12px;
+            font-size: 12.5px;
             font-weight: 500;
-            padding: 10px 8px;
-            border-radius: 8px;
+            padding: 12px 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: background 0.2s, border-color 0.2s, color 0.2s;
             letter-spacing: 0.3px;
@@ -265,42 +277,45 @@
         }
 
         .quick-amt:hover {
-            background: #1a3a5c;
-            border-color: #4a9fd4;
-            color: #ffffff;
+            background: #0d2e1a;
+            border-color: #27ae60;
+            color: #4adf8a;
         }
 
         .quick-amt.selected {
-            background: rgba(46,125,181,0.2);
-            border-color: #2e7db5;
-            color: #4a9fd4;
+            background: rgba(74,223,138,0.15);
+            border-color: #27ae60;
+            color: #4adf8a;
         }
 
         .btn-deposit {
             width: 100%;
-            padding: 13px;
-            background: #2e7db5;
+            padding: 15px;
+            background: linear-gradient(135deg, #27ae60, #1e8449);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            letter-spacing: 0.3px;
+            transition: opacity 0.2s, transform 0.1s;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 16px rgba(39,174,96,0.3);
         }
 
-        .btn-deposit:hover  { background: #256a9e; }
+        .btn-deposit:hover  { opacity: 0.9; }
         .btn-deposit:active { transform: scale(0.99); }
 
+        /* ── Rules Card ── */
         .rules-card {
             background: #0e2238;
             border: 1px solid #1a3a5c;
-            border-radius: 14px;
-            padding: 24px;
-            width: 240px;
+            border-radius: 18px;
+            padding: 28px;
+            width: 280px;
             flex-shrink: 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
         .rules-title {
@@ -309,23 +324,23 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 600;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .rules-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 16px;
         }
 
         .rules-list li {
             color: #a8c4e0;
-            font-size: 12.5px;
+            font-size: 13px;
             line-height: 1.5;
             display: flex;
             align-items: flex-start;
-            gap: 10px;
+            gap: 12px;
         }
 
         .rules-list li strong { color: #ffffff; font-weight: 600; }
@@ -337,8 +352,8 @@
             font-family: 'DM Mono', monospace;
             font-size: 9px;
             font-weight: 500;
-            padding: 3px 6px;
-            border-radius: 4px;
+            padding: 4px 7px;
+            border-radius: 5px;
             letter-spacing: 0.5px;
             flex-shrink: 0;
             margin-top: 2px;
@@ -414,7 +429,6 @@
                             CssClass="error-msg" Display="Dynamic" />
                     </div>
 
-                    <!-- Quick Amount Buttons -->
                     <span class="quick-label">Quick Select Amount</span>
                     <div class="quick-grid">
                         <button type="button" class="quick-amt" onclick="setAmount(100, this)">₱100</button>
@@ -482,9 +496,7 @@
                 input.addEventListener('keypress', function (e) {
                     if (!/[0-9]/.test(e.key)) e.preventDefault();
                 });
-                input.addEventListener('paste', function (e) {
-                    e.preventDefault();
-                });
+                input.addEventListener('paste', function (e) { e.preventDefault(); });
             }
         });
 

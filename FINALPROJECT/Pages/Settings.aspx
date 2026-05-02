@@ -15,6 +15,7 @@
 
         body { background: #060f18; min-height: 100vh; }
 
+        /* ── Navbar ── */
         .navbar {
             background: #0e2238;
             padding: 0 40px;
@@ -43,11 +44,7 @@
             white-space: nowrap;
         }
 
-        .nav-links {
-            display: flex;
-            align-items: stretch;
-            gap: 0;
-        }
+        .nav-links { display: flex; align-items: stretch; gap: 0; }
 
         .nav-links a {
             color: #7aaac8;
@@ -77,16 +74,8 @@
             gap: 16px;
         }
 
-        /* ── Lightened welcome name ── */
-        .navbar-right span {
-            color: #c8dff0;
-            font-size: 13px;
-        }
-
-        .navbar-right strong {
-            color: #e8f4ff;
-            font-weight: 600;
-        }
+        .navbar-right span { color: #c8dff0; font-size: 13px; }
+        .navbar-right strong { color: #e8f4ff; font-weight: 600; }
 
         .btn-logout {
             background: transparent;
@@ -104,6 +93,7 @@
 
         .btn-logout:hover { background: #cc0000; color: #ffffff; }
 
+        /* ── Page Header ── */
         .page-header {
             background: #0a1929;
             border-bottom: 1px solid #1a3a5c;
@@ -120,8 +110,9 @@
 
         .page-header p { color: #7aaac8; font-size: 12.5px; }
 
+        /* ── Main ── */
         .main-content {
-            max-width: 860px;
+            max-width: 1100px;
             margin: 30px auto;
             padding: 0 20px;
         }
@@ -132,12 +123,25 @@
             gap: 20px;
         }
 
+        /* ── Info Card ── */
         .info-card {
-            background: #0e2238;
-            border-radius: 14px;
-            padding: 28px;
-            border: 1px solid #1a3a5c;
+            background: linear-gradient(135deg, #0e2238 60%, #122e4e 100%);
+            border-radius: 18px;
+            padding: 32px;
+            border: 1px solid #1e4060;
             grid-column: 1 / -1;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(46,125,181,0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .card-title {
@@ -146,16 +150,27 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 600;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
+            margin-bottom: 22px;
+            padding-bottom: 14px;
             border-bottom: 1px solid #1a3a5c;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Info Grid (2 columns) ── */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 40px;
+            position: relative;
+            z-index: 1;
         }
 
         .info-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 13px 0;
             border-bottom: 1px solid rgba(26,58,92,0.5);
         }
 
@@ -163,7 +178,7 @@
 
         .info-label {
             color: #7aaac8;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
@@ -180,18 +195,20 @@
             font-family: 'DM Mono', monospace;
             color: #4a9fd4;
             font-size: 16px;
+            letter-spacing: 1.5px;
         }
 
         .info-value.green {
             font-family: 'DM Mono', monospace;
             color: #4adf8a;
+            text-shadow: 0 0 20px rgba(74,223,138,0.2);
         }
 
         .info-value.badge {
             background: rgba(74,223,138,0.1);
             border: 1px solid rgba(74,223,138,0.3);
             color: #4adf8a;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             padding: 4px 12px;
             border-radius: 20px;
@@ -199,12 +216,14 @@
             letter-spacing: 1px;
         }
 
+        /* ── Password Card ── */
         .password-card {
             background: #0e2238;
-            border-radius: 14px;
-            padding: 28px;
+            border-radius: 18px;
+            padding: 32px;
             border: 1px solid #1a3a5c;
             grid-column: 1 / -1;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
         .form-group { margin-bottom: 18px; }
@@ -219,11 +238,35 @@
             margin-bottom: 8px;
         }
 
+        /* ── Password Wrapper ── */
+        .password-wrapper { position: relative; }
+        .password-wrapper input { padding-right: 52px !important; }
+
+        .toggle-password {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #3a5570;
+            font-size: 10px;
+            font-family: 'DM Mono', monospace;
+            font-weight: 500;
+            padding: 0;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+            user-select: none;
+        }
+
+        .toggle-password:hover { color: #7aaac8; }
+
         .form-group input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 13px 16px;
             border: 1.5px solid #1a3a5c;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 14px;
             font-family: 'DM Sans', sans-serif;
             color: #ffffff;
@@ -244,28 +287,29 @@
         }
 
         .btn-save {
-            padding: 12px 28px;
-            background: #2e7db5;
+            padding: 13px 32px;
+            background: linear-gradient(135deg, #2e7db5, #256a9e);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 13.5px;
             font-weight: 600;
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
+            transition: opacity 0.2s, transform 0.1s;
             letter-spacing: 0.3px;
-            margin-top: 4px;
+            margin-top: 6px;
+            box-shadow: 0 4px 14px rgba(46,125,181,0.3);
         }
 
-        .btn-save:hover  { background: #256a9e; }
+        .btn-save:hover  { opacity: 0.9; }
         .btn-save:active { transform: scale(0.99); }
 
         .msg-error {
             display: block;
             background: #1a0a0a;
             border-left: 3px solid #cc0000;
-            border-radius: 6px;
+            border-radius: 8px;
             padding: 11px 15px;
             color: #ff6b6b;
             font-size: 13px;
@@ -279,7 +323,7 @@
             display: block;
             background: #0a1a0f;
             border-left: 3px solid #27ae60;
-            border-radius: 6px;
+            border-radius: 8px;
             padding: 11px 15px;
             color: #4adf8a;
             font-size: 13px;
@@ -312,12 +356,12 @@
         }
 
         .modal-box {
-            background: #0e2238;
-            border: 1px solid #1a3a5c;
-            border-radius: 16px;
-            padding: 35px 40px;
-            width: 420px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            background: linear-gradient(160deg, #0e2238, #0a1929);
+            border: 1px solid #1e4060;
+            border-radius: 18px;
+            padding: 38px 42px;
+            width: 440px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7);
             animation: slideUp 0.2s ease;
         }
 
@@ -327,9 +371,10 @@
         }
 
         .modal-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(255,170,51,0.12);
+            width: 50px;
+            height: 50px;
+            background: rgba(255,170,51,0.1);
+            border: 1px solid rgba(255,170,51,0.2);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -339,21 +384,22 @@
             font-weight: 600;
             color: #ffaa33;
             letter-spacing: 1px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .modal-title {
             color: #ffffff;
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.2px;
         }
 
         .modal-desc {
             color: #7aaac8;
             font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 28px;
+            line-height: 1.7;
+            margin-bottom: 30px;
         }
 
         .modal-actions {
@@ -363,36 +409,38 @@
 
         .btn-confirm {
             flex: 1;
-            padding: 12px;
-            background: #2e7db5;
+            padding: 13px;
+            background: linear-gradient(135deg, #2e7db5, #256a9e);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 13.5px;
             font-weight: 600;
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: opacity 0.2s;
+            box-shadow: 0 4px 14px rgba(46,125,181,0.3);
         }
 
-        .btn-confirm:hover { background: #256a9e; }
+        .btn-confirm:hover { opacity: 0.9; }
 
         .btn-cancel {
             flex: 1;
-            padding: 12px;
+            padding: 13px;
             background: transparent;
             color: #7aaac8;
             border: 1px solid #1a3a5c;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 13.5px;
             font-weight: 600;
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
-            transition: background 0.2s, color 0.2s;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
         }
 
         .btn-cancel:hover {
             background: #1a3a5c;
+            border-color: #2e7db5;
             color: #ffffff;
         }
 
@@ -407,7 +455,6 @@
 </head>
 <body>
 
-    <!-- Confirmation Modal -->
     <div class="modal-overlay" id="confirmModal">
         <div class="modal-box">
             <div class="modal-icon">PWD</div>
@@ -456,50 +503,58 @@
         <div class="main-content">
             <div class="settings-grid">
 
+                <!-- Account Info Card -->
                 <div class="info-card">
                     <div class="card-title">Account Information</div>
-                    <div class="info-row">
-                        <span class="info-label">Account Number</span>
-                        <span class="info-value mono">
-                            <asp:Label ID="lblAccountNumber" runat="server" />
-                        </span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Full Name</span>
-                        <span class="info-value">
-                            <asp:Label ID="lblFullName" runat="server" />
-                        </span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Email Address</span>
-                        <span class="info-value">
-                            <asp:Label ID="lblEmail" runat="server" />
-                        </span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Date Registered</span>
-                        <span class="info-value">
-                            <asp:Label ID="lblDateRegistered" runat="server" />
-                        </span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Current Balance</span>
-                        <span class="info-value green">
-                            <asp:Label ID="lblCurrentBalance" runat="server" />
-                        </span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Total Sent</span>
-                        <span class="info-value green">
-                            <asp:Label ID="lblTotalSent" runat="server" />
-                        </span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Account Status</span>
-                        <span class="info-value badge">Active</span>
+                    <div class="info-grid">
+                        <div class="info-row">
+                            <span class="info-label">Account Number</span>
+                            <span class="info-value mono">
+                                <asp:Label ID="lblAccountNumber" runat="server" />
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Current Balance</span>
+                            <span class="info-value green">
+                                <asp:Label ID="lblCurrentBalance" runat="server" />
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Full Name</span>
+                            <span class="info-value">
+                                <asp:Label ID="lblFullName" runat="server" />
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Total Sent</span>
+                            <span class="info-value green">
+                                <asp:Label ID="lblTotalSent" runat="server" />
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Email Address</span>
+                            <span class="info-value">
+                                <asp:Label ID="lblEmail" runat="server" />
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Account Status</span>
+                            <span class="info-value badge">● Active</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Date Registered</span>
+                            <span class="info-value">
+                                <asp:Label ID="lblDateRegistered" runat="server" />
+                            </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Security</span>
+                            <span class="info-value badge">● Protected</span>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Password Card -->
                 <div class="password-card">
                     <div class="card-title">Change Password</div>
 
@@ -509,8 +564,11 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label>Current Password</label>
-                            <asp:TextBox ID="txtCurrentPassword" runat="server"
-                                TextMode="Password" placeholder="Current password" />
+                            <div class="password-wrapper">
+                                <asp:TextBox ID="txtCurrentPassword" runat="server"
+                                    TextMode="Password" placeholder="Current password" />
+                                <button type="button" class="toggle-password" onclick="togglePassword('cur', this)">SHOW</button>
+                            </div>
                             <asp:RequiredFieldValidator ID="rfvCurrent" runat="server"
                                 ControlToValidate="txtCurrentPassword"
                                 ErrorMessage="Required."
@@ -518,8 +576,11 @@
                         </div>
                         <div class="form-group">
                             <label>New Password</label>
-                            <asp:TextBox ID="txtNewPassword" runat="server"
-                                TextMode="Password" placeholder="New password" />
+                            <div class="password-wrapper">
+                                <asp:TextBox ID="txtNewPassword" runat="server"
+                                    TextMode="Password" placeholder="New password" />
+                                <button type="button" class="toggle-password" onclick="togglePassword('new', this)">SHOW</button>
+                            </div>
                             <asp:RequiredFieldValidator ID="rfvNew" runat="server"
                                 ControlToValidate="txtNewPassword"
                                 ErrorMessage="Required."
@@ -527,8 +588,11 @@
                         </div>
                         <div class="form-group">
                             <label>Confirm New Password</label>
-                            <asp:TextBox ID="txtConfirmPassword" runat="server"
-                                TextMode="Password" placeholder="Confirm password" />
+                            <div class="password-wrapper">
+                                <asp:TextBox ID="txtConfirmPassword" runat="server"
+                                    TextMode="Password" placeholder="Confirm password" />
+                                <button type="button" class="toggle-password" onclick="togglePassword('con', this)">SHOW</button>
+                            </div>
                             <asp:RequiredFieldValidator ID="rfvConfirm" runat="server"
                                 ControlToValidate="txtConfirmPassword"
                                 ErrorMessage="Required."
@@ -541,14 +605,12 @@
                         </div>
                     </div>
 
-                    <!-- Hidden real submit button triggered by modal -->
                     <asp:Button ID="btnSave" runat="server"
                         Text="Update Password"
                         OnClick="btnSave_Click"
                         CssClass="btn-save"
                         style="display:none;" />
 
-                    <!-- Visible button that shows the modal first -->
                     <button type="button" class="btn-save" onclick="showModal()">
                         Update Password
                     </button>
@@ -565,7 +627,6 @@
 
     <script>
         function showModal() {
-            // Run client-side validation first
             if (typeof Page_ClientValidate === 'function') {
                 if (!Page_ClientValidate()) return;
             }
@@ -578,14 +639,28 @@
 
         function confirmSave() {
             closeModal();
-            // Trigger the hidden ASP.NET button
             document.getElementById('<%= btnSave.ClientID %>').click();
         }
 
-        // Close modal on overlay click
         document.getElementById('confirmModal').addEventListener('click', function (e) {
             if (e.target === this) closeModal();
         });
+
+        function togglePassword(field, btn) {
+            var ids = {
+                'cur': '<%= txtCurrentPassword.ClientID %>',
+                'new': '<%= txtNewPassword.ClientID %>',
+                'con': '<%= txtConfirmPassword.ClientID %>'
+            };
+            var input = document.getElementById(ids[field]);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.innerText = 'HIDE';
+            } else {
+                input.type = 'password';
+                btn.innerText = 'SHOW';
+            }
+        }
     </script>
 
 </body>

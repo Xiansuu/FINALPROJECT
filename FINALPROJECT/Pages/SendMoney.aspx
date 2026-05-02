@@ -114,21 +114,33 @@
 
         /* ── Main ── */
         .main-content {
-            max-width: 960px;
+            max-width: 1100px;
             margin: 30px auto;
             padding: 0 20px;
         }
 
         /* ── Account Card ── */
         .account-card {
-            background: #0e2238;
-            border-radius: 14px;
-            padding: 24px 28px;
-            margin-bottom: 20px;
-            border: 1px solid #1a3a5c;
+            background: linear-gradient(135deg, #0e2238 60%, #122e4e 100%);
+            border-radius: 18px;
+            padding: 34px 38px;
+            margin-bottom: 22px;
+            border: 1px solid #1e4060;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(74,159,212,0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .account-card::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(155,89,182,0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .account-left h4 {
@@ -144,7 +156,7 @@
             color: #ffffff;
             font-size: 15px;
             font-weight: 500;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .account-left p:last-child { margin-bottom: 0; }
@@ -152,8 +164,8 @@
         .account-num {
             font-family: 'DM Mono', monospace !important;
             color: #4a9fd4 !important;
-            font-size: 16px !important;
-            letter-spacing: 1.5px;
+            font-size: 20px !important;
+            letter-spacing: 2px;
         }
 
         .balance-right { text-align: right; }
@@ -170,8 +182,9 @@
         .balance-amount {
             font-family: 'DM Mono', monospace;
             color: #4adf8a;
-            font-size: 26px;
+            font-size: 36px;
             font-weight: 500;
+            text-shadow: 0 0 30px rgba(74,223,138,0.25);
         }
 
         /* ── Body Row ── */
@@ -184,13 +197,14 @@
         /* ── Form Card ── */
         .form-card {
             background: #0e2238;
-            border-radius: 14px;
-            padding: 28px;
+            border-radius: 18px;
+            padding: 32px;
             border: 1px solid #1a3a5c;
             flex: 1;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
-        .form-group { margin-bottom: 20px; }
+        .form-group { margin-bottom: 22px; }
 
         .form-group label {
             display: block;
@@ -199,7 +213,7 @@
             color: #7aaac8;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .input-row { display: flex; gap: 10px; }
@@ -207,10 +221,10 @@
 
         .form-group input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 18px;
             border: 1.5px solid #1a3a5c;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 10px;
+            font-size: 15px;
             font-family: 'DM Mono', monospace;
             color: #ffffff;
             background: #091929;
@@ -219,8 +233,8 @@
         }
 
         .form-group input:focus {
-            border-color: #4a9fd4;
-            box-shadow: 0 0 0 3px rgba(74,159,212,0.1);
+            border-color: #9b59b6;
+            box-shadow: 0 0 0 3px rgba(155,89,182,0.1);
         }
 
         .form-group input:disabled {
@@ -231,7 +245,7 @@
         .form-hint {
             color: #3a5570;
             font-size: 11.5px;
-            margin-top: 7px;
+            margin-top: 8px;
         }
 
         /* ── Quick Amount ── */
@@ -241,16 +255,16 @@
             color: #7aaac8;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-top: 12px;
-            margin-bottom: 10px;
+            margin-top: 14px;
+            margin-bottom: 12px;
             display: block;
         }
 
         .quick-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 22px;
         }
 
         .quick-amt {
@@ -258,10 +272,10 @@
             border: 1px solid #1a3a5c;
             color: #7aaac8;
             font-family: 'DM Mono', monospace;
-            font-size: 12px;
+            font-size: 12.5px;
             font-weight: 500;
-            padding: 10px 8px;
-            border-radius: 8px;
+            padding: 12px 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: background 0.2s, border-color 0.2s, color 0.2s;
             letter-spacing: 0.3px;
@@ -269,25 +283,31 @@
         }
 
         .quick-amt:hover {
-            background: #1a3a5c;
-            border-color: #4a9fd4;
-            color: #ffffff;
+            background: #1a0d2e;
+            border-color: #9b59b6;
+            color: #c39bd3;
         }
 
         .quick-amt.selected {
-            background: rgba(46,125,181,0.2);
-            border-color: #2e7db5;
-            color: #4a9fd4;
+            background: rgba(155,89,182,0.15);
+            border-color: #9b59b6;
+            color: #c39bd3;
         }
 
         /* ── Recipient Box ── */
         .recipient-box {
             background: #091929;
             border: 1px solid #1a3a5c;
-            border-radius: 8px;
-            padding: 14px 16px;
-            margin-bottom: 20px;
-            min-height: 44px;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-bottom: 22px;
+            min-height: 50px;
+            transition: border-color 0.2s;
+        }
+
+        .recipient-box.has-recipient {
+            border-color: #9b59b6;
+            background: rgba(155,89,182,0.05);
         }
 
         .recipient-label {
@@ -301,44 +321,45 @@
 
         /* ── Buttons ── */
         .btn-search {
-            padding: 12px 20px;
+            padding: 14px 22px;
             background: #1a3a5c;
             color: #a8c4e0;
             border: 1.5px solid #1a3a5c;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 13px;
             font-weight: 600;
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
-            transition: background 0.2s, color 0.2s;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
             white-space: nowrap;
         }
 
         .btn-search:hover {
-            background: #2e7db5;
-            border-color: #2e7db5;
+            background: #9b59b6;
+            border-color: #9b59b6;
             color: #ffffff;
         }
 
         .btn-send {
             width: 100%;
-            padding: 13px;
-            background: #2e7db5;
+            padding: 15px;
+            background: linear-gradient(135deg, #9b59b6, #7d3c98);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            letter-spacing: 0.3px;
+            transition: opacity 0.2s, transform 0.1s;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 16px rgba(155,89,182,0.3);
             margin-top: 4px;
         }
 
-        .btn-send:hover  { background: #256a9e; }
+        .btn-send:hover  { opacity: 0.9; }
         .btn-send:active { transform: scale(0.99); }
-        .btn-send:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+        .btn-send:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
 
         .val-error {
             color: #ff6b6b;
@@ -352,12 +373,12 @@
             display: block;
             background: #1a0a0a;
             border-left: 3px solid #cc0000;
-            border-radius: 6px;
-            padding: 11px 15px;
+            border-radius: 8px;
+            padding: 12px 16px;
             color: #ff6b6b;
             font-size: 13px;
             font-weight: 500;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .msg-error:empty { display: none; }
@@ -366,12 +387,12 @@
             display: block;
             background: #0a1a0f;
             border-left: 3px solid #27ae60;
-            border-radius: 6px;
-            padding: 11px 15px;
+            border-radius: 8px;
+            padding: 12px 16px;
             color: #4adf8a;
             font-size: 13px;
             font-weight: 500;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .msg-success:empty { display: none; }
@@ -379,17 +400,18 @@
         .divider {
             height: 1px;
             background: #1a3a5c;
-            margin: 20px 0;
+            margin: 22px 0;
         }
 
         /* ── Rules Sidebar ── */
         .rules-card {
             background: #0e2238;
             border: 1px solid #1a3a5c;
-            border-radius: 14px;
-            padding: 24px;
-            width: 240px;
+            border-radius: 18px;
+            padding: 28px;
+            width: 280px;
             flex-shrink: 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
         .rules-title {
@@ -398,36 +420,36 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 600;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .rules-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 16px;
         }
 
         .rules-list li {
             color: #a8c4e0;
-            font-size: 12.5px;
+            font-size: 13px;
             line-height: 1.5;
             display: flex;
             align-items: flex-start;
-            gap: 10px;
+            gap: 12px;
         }
 
         .rules-list li strong { color: #ffffff; font-weight: 600; }
 
         .rule-icon {
             display: inline-block;
-            background: rgba(74,159,212,0.1);
-            color: #4a9fd4;
+            background: rgba(155,89,182,0.1);
+            color: #c39bd3;
             font-family: 'DM Mono', monospace;
             font-size: 9px;
             font-weight: 500;
-            padding: 3px 6px;
-            border-radius: 4px;
+            padding: 4px 7px;
+            border-radius: 5px;
             letter-spacing: 0.5px;
             flex-shrink: 0;
             margin-top: 2px;
@@ -446,7 +468,6 @@
 <body>
     <form id="form1" runat="server">
 
-        <!-- Navbar -->
         <div class="navbar">
             <div class="navbar-left">
                 <a href="Dashboard.aspx" class="brand-name">Owl eWallet</a>
@@ -468,7 +489,6 @@
             </div>
         </div>
 
-        <!-- Page Header -->
         <div class="page-header">
             <h1>Send Money</h1>
             <p>Transfer funds to another Owl eWallet account</p>
@@ -476,7 +496,6 @@
 
         <div class="main-content">
 
-            <!-- Account Info Card -->
             <div class="account-card">
                 <div class="account-left">
                     <h4>Account Name</h4>
@@ -494,16 +513,13 @@
                 </div>
             </div>
 
-            <!-- Body Row -->
             <div class="body-row">
 
-                <!-- Form Card -->
                 <div class="form-card">
 
                     <asp:Label ID="lblError"   runat="server" CssClass="msg-error" />
                     <asp:Label ID="lblSuccess" runat="server" CssClass="msg-success" />
 
-                    <!-- Recipient Search -->
                     <div class="form-group">
                         <label>Recipient Account Number</label>
                         <div class="input-row">
@@ -517,16 +533,14 @@
                         </div>
                     </div>
 
-                    <!-- Recipient Info -->
-                    <div class="recipient-box">
+                    <div class="recipient-box" id="recipientBox">
                         <div class="recipient-label">Recipient Info</div>
                         <asp:Label ID="lblRecipientName" runat="server"
-                            style="color:#a8c4e0; font-size:14px; font-weight:500;" />
+                            style="color:#c39bd3; font-size:14px; font-weight:500;" />
                     </div>
 
                     <div class="divider"></div>
 
-                    <!-- Amount -->
                     <div class="form-group">
                         <label>Amount</label>
                         <asp:TextBox ID="txtAmount" runat="server"
@@ -543,7 +557,6 @@
                             CssClass="val-error" Display="Dynamic" Enabled="false" />
                         <p class="form-hint">Min: ₱100 &nbsp;|&nbsp; Max: ₱2,000 &nbsp;|&nbsp; Multiples of ₱100 only</p>
 
-                        <!-- Quick Amount Grid -->
                         <span class="quick-label">Quick Select Amount</span>
                         <div class="quick-grid">
                             <button type="button" class="quick-amt" onclick="setAmount(100, this)">₱100</button>
@@ -561,7 +574,6 @@
                         </div>
                     </div>
 
-                    <!-- Password -->
                     <div class="form-group">
                         <label>Your Password</label>
                         <asp:TextBox ID="txtPassword" runat="server"
@@ -582,7 +594,6 @@
 
                 </div>
 
-                <!-- Rules Sidebar -->
                 <div class="rules-card">
                     <div class="rules-title">Transaction Rules</div>
                     <ul class="rules-list">
@@ -631,9 +642,7 @@
                 input.addEventListener('keypress', function (e) {
                     if (!/[0-9]/.test(e.key)) e.preventDefault();
                 });
-                input.addEventListener('paste', function (e) {
-                    e.preventDefault();
-                });
+                input.addEventListener('paste', function (e) { e.preventDefault(); });
             }
         });
 

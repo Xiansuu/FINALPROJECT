@@ -106,7 +106,7 @@
             border: 1px solid #1a3a5c;
             color: #a8c4e0;
             height: 36px;
-            padding: 0 12px;
+            padding: 0 14px;
             border-radius: 8px;
             font-size: 11px;
             font-family: 'DM Mono', monospace;
@@ -116,7 +116,6 @@
             align-items: center;
             justify-content: center;
             gap: 7px;
-            position: relative;
             transition: background 0.2s, border-color 0.2s, color 0.2s;
             letter-spacing: 1px;
             white-space: nowrap;
@@ -131,17 +130,6 @@
         .notif-bell.has-notif {
             border-color: #2e7db5;
             color: #4a9fd4;
-        }
-
-        .notif-count-dot {
-            background: #2e7db5;
-            color: white;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 1px 6px;
-            border-radius: 10px;
-            font-family: 'DM Mono', monospace;
-            line-height: 16px;
         }
 
         .notif-dropdown {
@@ -168,6 +156,9 @@
         .notif-dropdown-header {
             padding: 13px 18px;
             border-bottom: 1px solid #1a3a5c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .notif-dropdown-header span {
@@ -176,6 +167,17 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 600;
+        }
+
+        .notif-count-label {
+            background: rgba(46,125,181,0.15);
+            color: #4a9fd4;
+            font-size: 10px;
+            font-family: 'DM Mono', monospace;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(46,125,181,0.3);
         }
 
         .notif-dropdown-body {
@@ -281,15 +283,26 @@
 
         /* ── Account Card ── */
         .account-card {
-            background: #0e2238;
-            border-radius: 16px;
-            padding: 30px 35px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #0e2238 60%, #122e4e 100%);
+            border-radius: 18px;
+            padding: 34px 38px;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(74,159,212,0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #1a3a5c;
+            border: 1px solid #1e4060;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .account-card::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(46,125,181,0.12) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .account-info h3 {
@@ -308,7 +321,7 @@
             color: #4a9fd4 !important;
             font-size: 22px !important;
             font-weight: 500 !important;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .account-info .gap { margin-bottom: 16px; }
@@ -327,8 +340,9 @@
         .balance-amount {
             font-family: 'DM Mono', monospace;
             color: #4adf8a;
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 500;
+            text-shadow: 0 0 30px rgba(74,223,138,0.25);
         }
 
         /* ── Stats Row ── */
@@ -336,15 +350,29 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .stat-card {
             background: #0e2238;
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 22px 25px;
             border: 1px solid #1a3a5c;
+            transition: border-color 0.2s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
         }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, #2e7db5, transparent);
+            opacity: 0.5;
+        }
+
+        .stat-card:hover { border-color: #2e7db5; transform: translateY(-2px); }
 
         .stat-card h4 {
             color: #7aaac8;
@@ -380,46 +408,103 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .action-btn {
-            background: #0e2238;
-            border: 1px solid #1a3a5c;
-            border-radius: 12px;
-            padding: 22px 15px;
+            border-radius: 14px;
+            padding: 26px 15px;
             text-align: center;
             text-decoration: none;
-            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+            transition: all 0.22s ease;
             display: block;
-        }
-
-        .action-btn:hover {
-            background: #152d47;
-            border-color: #4a9fd4;
-            transform: translateY(-2px);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
         }
 
         .action-label {
             color: #ffffff;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             display: block;
-            letter-spacing: 0.2px;
+            letter-spacing: 0.3px;
         }
 
         .action-tag {
-            display: inline-block;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: rgba(74,159,212,0.12);
-            margin-bottom: 12px;
-            line-height: 36px;
+            display: inline-flex;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            margin-bottom: 14px;
+            align-items: center;
+            justify-content: center;
             font-family: 'DM Mono', monospace;
-            font-size: 12px;
-            color: #4a9fd4;
+            font-size: 11px;
             font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: background 0.22s, border-color 0.22s;
+        }
+
+        /* Deposit — Green */
+        .action-btn.dep {
+            background: linear-gradient(160deg, #0d2e1a, #0a1f12);
+            border-color: #1a4d2e;
+        }
+        .action-btn.dep:hover {
+            border-color: #27ae60;
+            box-shadow: 0 8px 24px rgba(39,174,96,0.2);
+            transform: translateY(-3px);
+        }
+        .action-btn.dep .action-tag {
+            background: rgba(74,223,138,0.1);
+            border-color: rgba(74,223,138,0.25);
+            color: #4adf8a;
+        }
+        .action-btn.dep:hover .action-tag {
+            background: rgba(74,223,138,0.2);
+            border-color: rgba(74,223,138,0.5);
+        }
+
+        /* Withdraw — Red */
+        .action-btn.wit {
+            background: linear-gradient(160deg, #2e0d0d, #1f0a0a);
+            border-color: #4d1a1a;
+        }
+        .action-btn.wit:hover {
+            border-color: #c0392b;
+            box-shadow: 0 8px 24px rgba(192,57,43,0.2);
+            transform: translateY(-3px);
+        }
+        .action-btn.wit .action-tag {
+            background: rgba(255,107,107,0.1);
+            border-color: rgba(255,107,107,0.25);
+            color: #ff6b6b;
+        }
+        .action-btn.wit:hover .action-tag {
+            background: rgba(255,107,107,0.2);
+            border-color: rgba(255,107,107,0.5);
+        }
+
+        /* Send Money — Purple */
+        .action-btn.snd {
+            background: linear-gradient(160deg, #1a0d2e, #120a1f);
+            border-color: #3d1f6e;
+        }
+        .action-btn.snd:hover {
+            border-color: #9b59b6;
+            box-shadow: 0 8px 24px rgba(155,89,182,0.2);
+            transform: translateY(-3px);
+        }
+        .action-btn.snd .action-tag {
+            background: rgba(155,89,182,0.1);
+            border-color: rgba(155,89,182,0.25);
+            color: #c39bd3;
+        }
+        .action-btn.snd:hover .action-tag {
+            background: rgba(155,89,182,0.2);
+            border-color: rgba(155,89,182,0.5);
         }
 
         /* ── Reports Grid ── */
@@ -431,42 +516,82 @@
         }
 
         .report-btn {
-            background: #091929;
-            border: 1px solid #1a3a5c;
-            border-radius: 12px;
-            padding: 20px 18px;
+            border-radius: 14px;
+            padding: 22px 18px;
             text-align: center;
             text-decoration: none;
-            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+            transition: all 0.22s ease;
             display: block;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
         }
 
-        .report-btn:hover {
-            background: #0e2238;
-            border-color: #4a9fd4;
-            transform: translateY(-2px);
+        .report-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            transition: width 0.3s ease;
         }
+
+        .report-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+        .report-btn:hover::after { width: 100%; }
 
         .report-label {
             color: #a8c4e0;
             font-size: 13px;
             font-weight: 500;
             display: block;
+            transition: color 0.2s;
         }
 
+        .report-btn:hover .report-label { color: #ffffff; }
+
         .report-tag {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            background: rgba(74,159,212,0.08);
-            margin-bottom: 10px;
-            line-height: 32px;
+            display: inline-flex;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            margin-bottom: 12px;
+            align-items: center;
+            justify-content: center;
             font-family: 'DM Mono', monospace;
-            font-size: 11px;
-            color: #4a9fd4;
+            font-size: 10px;
             font-weight: 500;
+            transition: background 0.22s;
         }
+
+        /* Statement — Purple */
+        .report-btn.soa {
+            background: linear-gradient(160deg, #1a0d2e, #120a1f);
+            border-color: #3d1f6e;
+        }
+        .report-btn.soa:hover { border-color: #9b59b6; box-shadow: 0 8px 24px rgba(155,89,182,0.2); }
+        .report-btn.soa .report-tag { background: rgba(155,89,182,0.1); border-color: rgba(155,89,182,0.25); color: #c39bd3; }
+        .report-btn.soa:hover .report-tag { background: rgba(155,89,182,0.2); }
+        .report-btn.soa::after { background: #9b59b6; }
+
+        /* Dep/With — Teal */
+        .report-btn.dw {
+            background: linear-gradient(160deg, #0d2e2a, #0a1f1c);
+            border-color: #1a5c52;
+        }
+        .report-btn.dw:hover { border-color: #1abc9c; box-shadow: 0 8px 24px rgba(26,188,156,0.2); }
+        .report-btn.dw .report-tag { background: rgba(26,188,156,0.1); border-color: rgba(26,188,156,0.25); color: #1abc9c; }
+        .report-btn.dw:hover .report-tag { background: rgba(26,188,156,0.2); }
+        .report-btn.dw::after { background: #1abc9c; }
+
+        /* Sent/Received — Orange */
+        .report-btn.sr {
+            background: linear-gradient(160deg, #2e1d0d, #1f140a);
+            border-color: #5c3a1a;
+        }
+        .report-btn.sr:hover { border-color: #e67e22; box-shadow: 0 8px 24px rgba(230,126,34,0.2); }
+        .report-btn.sr .report-tag { background: rgba(230,126,34,0.1); border-color: rgba(230,126,34,0.25); color: #e67e22; }
+        .report-btn.sr:hover .report-tag { background: rgba(230,126,34,0.2); }
+        .report-btn.sr::after { background: #e67e22; }
 
         /* ── Footer ── */
         .footer-info {
@@ -508,6 +633,7 @@
                     <div class="notif-dropdown" id="notifDropdown">
                         <div class="notif-dropdown-header">
                             <span>Recent Activity</span>
+                            <asp:Label ID="lblNotifCountLabel" runat="server" CssClass="notif-count-label" />
                         </div>
                         <div class="notif-dropdown-body">
                             <asp:Panel ID="pnlNotifEmpty" runat="server" Visible="false">
@@ -575,25 +701,25 @@
                 </div>
                 <div class="stat-card">
                     <h4>Account Status</h4>
-                    <p class="stat-active">Active</p>
+                    <p class="stat-active">● Active</p>
                 </div>
                 <div class="stat-card">
                     <h4>Security</h4>
-                    <p class="stat-protected">Protected</p>
+                    <p class="stat-protected">● Protected</p>
                 </div>
             </div>
 
             <p class="section-title">Quick Actions</p>
             <div class="actions-grid">
-                <a href="Deposit.aspx" class="action-btn">
+                <a href="Deposit.aspx" class="action-btn dep">
                     <span class="action-tag">DEP</span>
                     <span class="action-label">Deposit</span>
                 </a>
-                <a href="Withdraw.aspx" class="action-btn">
+                <a href="Withdraw.aspx" class="action-btn wit">
                     <span class="action-tag">WIT</span>
                     <span class="action-label">Withdraw</span>
                 </a>
-                <a href="SendMoney.aspx" class="action-btn">
+                <a href="SendMoney.aspx" class="action-btn snd">
                     <span class="action-tag">SND</span>
                     <span class="action-label">Send Money</span>
                 </a>
@@ -601,15 +727,15 @@
 
             <p class="section-title">Reports</p>
             <div class="reports-grid">
-                <a href="StatementOfAccount.aspx" class="report-btn">
+                <a href="StatementOfAccount.aspx" class="report-btn soa">
                     <span class="report-tag">SOA</span>
                     <span class="report-label">Statement of Account</span>
                 </a>
-                <a href="MyDepositsWithdrawals.aspx" class="report-btn">
+                <a href="MyDepositsWithdrawals.aspx" class="report-btn dw">
                     <span class="report-tag">D/W</span>
                     <span class="report-label">My Deposits / Withdrawals</span>
                 </a>
-                <a href="MySentReceived.aspx" class="report-btn">
+                <a href="MySentReceived.aspx" class="report-btn sr">
                     <span class="report-tag">S/R</span>
                     <span class="report-label">My Sent / Received</span>
                 </a>
