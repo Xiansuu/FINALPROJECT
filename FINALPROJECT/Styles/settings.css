@@ -1,0 +1,511 @@
+﻿*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'DM Sans', sans-serif;
+}
+
+body {
+    background: #060f18;
+    min-height: 100vh;
+}
+
+/* ── Navbar ── */
+.navbar {
+    background: #0e2238;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.brand-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #ffffff;
+    padding: 18px 0;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+}
+
+    .nav-links a {
+        color: #7aaac8;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid transparent;
+        transition: color 0.2s, border-color 0.2s;
+        white-space: nowrap;
+    }
+
+        .nav-links a:hover {
+            color: #ffffff;
+            border-bottom-color: #4a9fd4;
+        }
+
+        .nav-links a.active {
+            color: #ffffff;
+            border-bottom-color: #2e7db5;
+        }
+
+.nav-divider {
+    width: 1px;
+    background: #1a3a5c;
+    margin: 12px 0;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+    .navbar-right span {
+        color: #c8dff0;
+        font-size: 13px;
+    }
+
+    .navbar-right strong {
+        color: #e8f4ff;
+        font-weight: 600;
+    }
+
+.btn-logout {
+    background: transparent;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+    padding: 7px 16px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+    .btn-logout:hover {
+        background: #cc0000;
+        color: #ffffff;
+    }
+
+/* ── Page Header ── */
+.page-header {
+    background: #0a1929;
+    border-bottom: 1px solid #1a3a5c;
+    padding: 24px 40px;
+}
+
+    .page-header h1 {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        margin-bottom: 4px;
+    }
+
+    .page-header p {
+        color: #7aaac8;
+        font-size: 12.5px;
+    }
+
+/* ── Main ── */
+.main-content {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* ── Info Card ── */
+.info-card {
+    background: linear-gradient(135deg, #0e2238 60%, #122e4e 100%);
+    border-radius: 18px;
+    padding: 32px;
+    border: 1px solid #1e4060;
+    grid-column: 1 / -1;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+    .info-card::before {
+        content: '';
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(circle, rgba(46,125,181,0.1) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+.card-title {
+    color: #7aaac8;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #1a3a5c;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Info Grid (2 columns) ── */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(26,58,92,0.5);
+}
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+.info-label {
+    color: #7aaac8;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.info-value {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: right;
+}
+
+    .info-value.mono {
+        font-family: 'DM Mono', monospace;
+        color: #4a9fd4;
+        font-size: 16px;
+        letter-spacing: 1.5px;
+    }
+
+    .info-value.green {
+        font-family: 'DM Mono', monospace;
+        color: #4adf8a;
+        text-shadow: 0 0 20px rgba(74,223,138,0.2);
+    }
+
+    .info-value.badge {
+        background: rgba(74,223,138,0.1);
+        border: 1px solid rgba(74,223,138,0.3);
+        color: #4adf8a;
+        font-size: 10px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+/* ── Password Card ── */
+.password-card {
+    background: #0e2238;
+    border-radius: 18px;
+    padding: 32px;
+    border: 1px solid #1a3a5c;
+    grid-column: 1 / -1;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+    .form-group label {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        color: #7aaac8;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 8px;
+    }
+
+/* ── Password Wrapper ── */
+.password-wrapper {
+    position: relative;
+}
+
+    .password-wrapper input {
+        padding-right: 52px !important;
+    }
+
+.toggle-password {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #3a5570;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    padding: 0;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+    user-select: none;
+}
+
+    .toggle-password:hover {
+        color: #7aaac8;
+    }
+
+.form-group input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid #1a3a5c;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: #ffffff;
+    background: #091929;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+    .form-group input:focus {
+        border-color: #4a9fd4;
+        box-shadow: 0 0 0 3px rgba(74,159,212,0.1);
+    }
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+}
+
+.btn-save {
+    padding: 13px 32px;
+    background: linear-gradient(135deg, #2e7db5, #256a9e);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.3px;
+    margin-top: 6px;
+    box-shadow: 0 4px 14px rgba(46,125,181,0.3);
+}
+
+    .btn-save:hover {
+        opacity: 0.9;
+    }
+
+    .btn-save:active {
+        transform: scale(0.99);
+    }
+
+.msg-error {
+    display: block;
+    background: #1a0a0a;
+    border-left: 3px solid #cc0000;
+    border-radius: 8px;
+    padding: 11px 15px;
+    color: #ff6b6b;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+
+    .msg-error:empty {
+        display: none;
+    }
+
+.msg-success {
+    display: block;
+    background: #0a1a0f;
+    border-left: 3px solid #27ae60;
+    border-radius: 8px;
+    padding: 11px 15px;
+    color: #4adf8a;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+
+    .msg-success:empty {
+        display: none;
+    }
+
+/* ── Confirmation Modal ── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+    .modal-overlay.open {
+        display: flex;
+        animation: fadeIn 0.18s ease;
+    }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-box {
+    background: linear-gradient(160deg, #0e2238, #0a1929);
+    border: 1px solid #1e4060;
+    border-radius: 18px;
+    padding: 38px 42px;
+    width: 440px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    animation: slideUp 0.2s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(16px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255,170,51,0.1);
+    border: 1px solid rgba(255,170,51,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #ffaa33;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+}
+
+.modal-desc {
+    color: #7aaac8;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-confirm {
+    flex: 1;
+    padding: 13px;
+    background: linear-gradient(135deg, #2e7db5, #256a9e);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    box-shadow: 0 4px 14px rgba(46,125,181,0.3);
+}
+
+    .btn-confirm:hover {
+        opacity: 0.9;
+    }
+
+.btn-cancel {
+    flex: 1;
+    padding: 13px;
+    background: transparent;
+    color: #7aaac8;
+    border: 1px solid #1a3a5c;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+    .btn-cancel:hover {
+        background: #1a3a5c;
+        border-color: #2e7db5;
+        color: #ffffff;
+    }
+
+.footer-info {
+    text-align: center;
+    color: #2a4560;
+    font-size: 12px;
+    margin-top: 30px;
+    padding-bottom: 20px;
+}
+
